@@ -37,6 +37,14 @@ class Item:
         """
         return self.__name
 
+    def __add__(self, other):
+        """
+        Складывает товары по их количеству в магазине.
+        """
+        if not isinstance(other, self.__class__):
+            raise Exception('Это товар не на учете магазина.')
+        return self.quantity + other.quantity
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
