@@ -3,7 +3,7 @@ from src.item import Item
 
 class Phone(Item):
 
-    def __init__(self, name: str, price: float, quantity: int, number_of_sim: int):
+    def __init__(self, name: str, price: float, quantity: int, sim: int):
         """
         Создание экземпляра класса Phone.
 
@@ -13,10 +13,14 @@ class Phone(Item):
         :param quantity: Количество товара в магазине.
 
         Атрибуты дочернего класса Phone:
-        :param number_of_sim: Количество симкарт.
+        :param sim: Количество симкарт.
         """
         super().__init__(name, price, quantity)
-        self.__number_of_sim = number_of_sim
+
+        if sim <= 0 and isinstance(sim, int):
+            raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля.')
+        else:
+            self.sim = sim
 
     def __str__(self):
         """
@@ -35,7 +39,7 @@ class Phone(Item):
         """
         Возвращает количество симкарт
         """
-        return self.__number_of_sim
+        return self.sim
 
     @number_of_sim.setter
     def number_of_sim(self, new_number_of_sim):
@@ -45,4 +49,4 @@ class Phone(Item):
         if new_number_of_sim <= 0 and isinstance(new_number_of_sim, int):
             raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля.')
         else:
-            self.__number_of_sim = new_number_of_sim
+            self.sim = new_number_of_sim
