@@ -7,7 +7,7 @@ def test_phone_init(data_for_phone):
     assert data_for_phone.name == 'iPhone 14'
     assert data_for_phone.price == 120000
     assert data_for_phone.quantity == 5
-    assert data_for_phone.number_of_sim == 2
+    assert data_for_phone.sim == 2
 
 
 def test_sim():
