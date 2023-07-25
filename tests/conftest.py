@@ -1,5 +1,6 @@
 import pytest
 
+from src.instantiate_csv_error import InstantiateCSVError
 from src.item import Item
 from src.keyboard import Keyboard
 from src.phone import Phone
@@ -18,3 +19,8 @@ def data_for_phone():
 @pytest.fixture
 def data_for_keyboard():
     return Keyboard('Dark Project KD87A', 9600, 5)
+
+
+@pytest.fixture
+def data_for_instantiate_error():
+    return InstantiateCSVError('Файл items.csv поврежден')
