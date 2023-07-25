@@ -1,6 +1,7 @@
 import csv
 
 from settings import CSV_PATH
+from src.instantiate_csv_error import InstantiateCSVError
 
 
 class Item:
@@ -86,10 +87,16 @@ class Item:
         Инициализирует экземпляры класса Item данными из файла src/items.csv
         """
         cls.all = []
+
+        if not cls.csv_path.exists():
+            raise FileNotFoundError('Отсутствует файл items.csv')
+
         with open(cls.csv_path, encoding='Windows-1251') as csvfile:
             reader = csv.DictReader(csvfile)
 
             for dict_product in reader:
+                if len(dict_product) != 3:
+                    raise InstantiateCSVError('Файл items.csv поврежден')
                 dict_product: dict
                 cls(**dict_product)
 
